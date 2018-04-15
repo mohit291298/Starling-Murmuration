@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+
+
+
+
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\title{Mathematical Model on Starling Murmuration}
+\author{Mohit Gupta(2016CS50433) and Anoosh Kotak }
+\date{April 15, 2018}
+
+\begin{document}
+
+\maketitle
+
+
+
+\textbf{The objective} of this paper is to propose a mathematical model describing the simulation of the phenomenon of \textbf{\textit{\underline{starling murmuration.}}} and using this, measure the average energy spend by each bird, the angular momentum and the force that each bird has to withstand in a typical flight ritual.
+
+
+
+\section{Introduction}
+\subsection{Problem Description}
+Animal behavior has always been a source of amazement to mankind. In many
+areas the abilities of the animals surpasses the abilities of us humans, but with the
+use of technology we have been able to best the animals in more and more areas.
+By studying the behavior of animals we have been able to find many interesting
+solutions animals apply to the problems in their environment.
+\paragraph{}
+
+This paper focuses on the simulation of \emph{starling murmuration}.With this simulation we could easily measure the average energy spend by each bird, the angular momentum and the force that each bird has to withstand in a typical flight ritual.
+\bigskip
+
+\textbf{Murmuration} refers to the phenomenon that results when hundreds, sometimes thousands, of starlings fly in swooping, intricately coordinated patterns through the sky.
+\pagebreak
+
+\subsection{Method}
+We will computationally simulate the phenomenon by modelling each bird as an independent agent communicating and cooperating with other neighbouring agents.  The task, however, is not to worry too much about each birds individual behavior but to dream up a set of rules that govern them all.  So in this case the behavior of each individual is based on its cruise speed,the  position  and  movement  direction  of  its neighbors.
+
+\subsection{Intended Behaviour}
+
+But how should a flock of starlings behave?
+\bigskip
+
+Flocking of starlings is defined as a group of moving bodies that:
+
+\begin{itemize}
+    \item Are close to each other.
+    \item Move with approximately the same speed.
+ \item Move in approximately the same direction.
+ \item The flock member should not collide with each other.
+ \item The flock should not spontaneously lose members.
+\end{itemize}
+
+\subsection{Some Definitions}
+\subsubsection{Boid}
+A representation of a bird in flocking simulations. The word is most commonly used
+in the context of Boids, the original computer simulation of flocking behavior by
+Reynolds and derivatives of Boids.
+\subsubsection{Emergent behaviour}
+When individual objects interact with each other directly or indirectly to create
+much more complex results. Another characteristic of emergent behaviour is that
+the end result is hard to predict even if each interaction in itself is simplistic.
+The \textit{Starling Murmuration} simulation can be said to create an emergent behaviour.
+
+
+\section{Mathematical Model}
+
+\subsection{Governing Rules:}
+
+\textbf{The flocking behavior of starlings are controlled by the following three rules:}
+\begin{enumerate}
+
+\item {\textbf{Cohesion :}} Steer to move toward the average position of local flockmates. This steering is termed as the Cohesion. Cohesion is the
+rule that keeps the flock together, without it there would not be any flocking at all.
+\item {\textbf{Alignment :}} Steer towards the average heading of local flockmates. Movement just towards the center of mass would lead to the non-alignment of the directions in which the different birds are independently moving. This rule tries to make the boids mimic each others course and speed. If this rule was not used the boids would bounce around a lot and not form the beautiful flocking patterns that can
+be seen in real flocks.
+\item {\textbf{Separation :}} Steer to avoid crowding local flockmates. The birds cannot be allowed to come close to each other indefinitely. They have to be separated if they come closer than they are expected to. This rule attempts steer the
+boid away from possible collisions. It’s important to note that the distance from
+which the boids start to avoid each other must be less than the distance from which
+the boids attract each other (due to the cohesion rule). Otherwise no flocks would
+be formed.
+
+\end{enumerate}
+
+\subsection{Characteristics of a Single bird(Boid):}
+
+There are five characteristics of a boid that completely specifies it in our model:
+\begin{enumerate}
+\item{\textbf{Position :}} We can define position of a bird by using a co-ordinate system. It will have x, y and z components. The position of a bird changes with time depending upon its velocity.
+\item{\textbf{Speed :}} Speed of a bird is the rate with which it is travelling. It is basically the magnitude of velocity.
+\item{\textbf{Direction vector :}} It is a vector in which the bird is travelling. It is the velocity of a bird divided by its speed.
+\item{\textbf{Mass :}} It is the mass of the bird.
+\item{\textbf{Neighbours :}} Neighbours of a bird are those birds which lie inside a sphere of radius r centered at the bird. A bird's speed, position and Direction vector only depends upon the neighbours, not on the other birds.
+\end{enumerate}
+
+\subsection{Detailed Analysis of Flocking Behaviour}
+
+\begin{itemize}
+    \item \textbf{Cohesion:}
+    
+    \textbf{Data:} A Boid.    
+    
+    \textbf{Goal:} Steer to move toward the average position of neighbours.
+    
+    \bigskip
+    
+    Firstly, we are only interested in the neighbouring birds. We take the average position of all these neighbours (adding up the positions of all the neighbours and dividing it by the number of neighbours), and subtract the birds's position from it. 
+    
+    So the bird having position $p = (x,y,z)$ will move towards $(x_c-x,y_c-y,z_c-z)$ where $(x_c,y_c,z_c)$ is the Centre of Mass (COM) of neighbours. This value is then divided by a coherence Factor that determines how much the birds want to cohere with its neighbours. If the coherence Factor is too high, the birds will end up not moving, if it's too low it will end up sticking too closely with each other.
+
+    \item \textbf{Alignment:}
+    
+    \textbf{Data:} A Boid.    
+    
+    \textbf{Goal:} Steer towards average heading of neighbors.
+    
+    \bigskip
+    
+        As before, we are only interested in a limited number of boids i.e neighbouring boids. However instead of affecting the position of the boid, this rule changes the velocity of the boid and we add up the velocity of all the neighbouring boids, and divide it by the number of neighbours. The final value modifies the velocity instead of replacing it altogether, while the position of the boid is modified by the new value.
+        
+    \item \textbf{Separation:}
+    
+    \textbf{Data:} A Boid.    
+    
+    \textbf{Goal:} Steer to avoid crowding or collision with other boids.
+    
+    \bigskip
+    
+This rule says that the birds have to avoid collision with its neighbours. For this we have to consider a collision radius $r_c$ such that for a bird if there is any neighbour in this radius then the bird has to go away from that neighbour. So, if there are n neighbours in the collision radius, then the bird will steer away from the centre of mass $(x_c,y_c,z_c)$ of these neighbours. It means that the bird with position $(x,y,z)$ will move in the direction $(x-x_c,y-y_c,z-z_c)$.
+
+\item{} \textbf{Neighbours}
+As all the birds are moving, the neighbours may change. We will find the new neighbours by calculating the distance between all the birds(by using the position of the birds) and then comparing it with the neighbour radius r.
+$$d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2} < r $$
+
+\item{\textbf{Mass}} Mass will not change with time.
+
+\item{\textbf{Staying Window(Optional)}} \\
+We have assumed that the birds will be confined within a certain volume (a cube). So whenever, a bird reaches near a boundary , its velocity will be changed away from the boundary. It can be done by using vector law of reflection.\\
+$$r = a - 2(a.n) n$$
+If we plug in the current moving direction as 'a' and the normal vector of the boundary as 'n' , then we will get the new moving direction as 'r'. Also we are assuming that the collisions are elastic, so speed will not change in the boundary collision.
+
+\end{itemize}
+
+\pagebreak
+
+\section{Measuring various Parameters from the 
+simulation}
+
+\bigskip
+\subsection{Average energy spent by each bird in a typical flight:}
+
+The average energy can be found either by varying time or
+by averaging out the energy of all birds at a given time. Precisely,
+
+\begin{enumerate}
+    \item Integrate the energy of a bird until time T per unit the time interval T.
+    
+    $$E_{avg} = \int_{0}^{T} mv^2 dt/2T$$
+    where $v = $ speed of the bird,
+    $m = $ mass of the bird,
+    $E_{avg} =$ average energy.
+    
+    \item Taking average energy of the entire flock at time T.
+    $$ E_{avg} = (mv_1^2 + mv_2^2 + ..... + mv_n^2)/2n $$
+    where $v_i = $ speed of $i_{th}$ bird,
+    $m = $ mass of the birds.
+    and $i = 1,2,....,n$
+    $E_{avg} =$ Average energy.    
+\end{enumerate}
+
+\subsection{Average momentum of each bird in a typical flight:}
+
+Integrate angular momentum(about origin) of the bird until time T and then take average over it.
+$$\vec{L}_{avg} = \int_{0}^{T} m(\vec{r}*\vec{v}) dt/T$$
+where $\vec{v} = $ velocity of the bird,
+    $m = $ mass of the bird,
+    $\vec{L}_{avg} =$ Average angular momentum.
+    
+    
+\subsection{Average Force experienced by each bird in a typical flight:}
+
+Average force can be calculated as,
+
+$$\vec{F}_{avg} = \Delta\vec{p}/\Delta{t} = m(\vec{v}_T - \vec{v}_0)/T$$
+
+where $\vec{v}_T = $ velocity of the bird at time T,
+$\vec{v}_0 = $ velocity of the bird at initial time instant,
+    $m = $ mass of the bird,
+    $\vec{F}_{avg} =$ Average Force on each bird.
+
+
+
+\end{document}
