@@ -1,0 +1,233 @@
+\hypertarget{classBoid}{}\section{Boid Class Reference}
+\label{classBoid}\index{Boid@{Boid}}
+
+
+{\ttfamily \#include $<$Boid.\+h$>$}
+
+
+
+Collaboration diagram for Boid\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classBoid__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBoid_a5a0e15d769fc6831b6ad5c36135d7a83}{Boid} ()
+\item 
+\hyperlink{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}{Boid} (float x, float y)
+\item 
+void \hyperlink{classBoid_ad73e4b8c1af1ed53cd6e5b4fd020c81e}{apply\+Force} (\hyperlink{classmyvector}{myvector} force)
+\item 
+\hyperlink{classmyvector}{myvector} \hyperlink{classBoid_a00eab0293372dcac7379d4deec39b430}{Separation} (vector$<$ \hyperlink{classBoid}{Boid} $>$ Boids)
+\item 
+\hyperlink{classmyvector}{myvector} \hyperlink{classBoid_a955a16c0223345823aadbe4493b0e982}{Alignment} (vector$<$ \hyperlink{classBoid}{Boid} $>$ Boids)
+\item 
+\hyperlink{classmyvector}{myvector} \hyperlink{classBoid_af8bff195217c6fd82ad390282d12f427}{Cohesion} (vector$<$ \hyperlink{classBoid}{Boid} $>$ Boids)
+\item 
+void \hyperlink{classBoid_ad7577660df05b58b00449c12cbc9ecdd}{run} (vector$<$ \hyperlink{classBoid}{Boid} $>$ v, int a)
+\item 
+void \hyperlink{classBoid_a7404d18dcb7dfc669e80c534819fa893}{update} ()
+\item 
+void \hyperlink{classBoid_ab8696c8548189dba88f59d917a2212fb}{flock} (vector$<$ \hyperlink{classBoid}{Boid} $>$ v)
+\item 
+void \hyperlink{classBoid_af1bc54215ea897a0ae4b92048073d863}{borders} (int a)
+\item 
+float \hyperlink{classBoid_aa5a1ed6464e44da8bef955e848635739}{angle} (\hyperlink{classmyvector}{myvector} v)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmyvector}{myvector} \hyperlink{classBoid_a1494747f6a02c9117b581bd7f77b0c27}{location}
+\item 
+\hyperlink{classmyvector}{myvector} \hyperlink{classBoid_a485c85be8c3f465a2a0f07de3e0449e0}{velocity}
+\item 
+\hyperlink{classmyvector}{myvector} \hyperlink{classBoid_aea00ef84171ec7ae51a5d299001c673b}{acceleration}
+\item 
+float \hyperlink{classBoid_ac57e1058fb698a542990405ecfd1d88b}{max\+Speed}
+\item 
+float \hyperlink{classBoid_a2a6d579118276efaeac7ba0e4b872afd}{max\+Force}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for representing each boid(\+Starling). This class completely characterizes a starling. It consists of various data members like location, velocity, acceleration and many functions to maipulate these appropriately. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Boid@{Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{Boid()}{Boid()}}]{\setlength{\rightskip}{0pt plus 5cm}Boid\+::\+Boid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoid_a5a0e15d769fc6831b6ad5c36135d7a83}{}\label{classBoid_a5a0e15d769fc6831b6ad5c36135d7a83}
+A Constructor. The default constructor(with no parameters). \index{Boid@{Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{Boid(float x, float y)}{Boid(float x, float y)}}]{\setlength{\rightskip}{0pt plus 5cm}Boid\+::\+Boid (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}{}\label{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}
+A Constructor. The constructor initialies the a boid(\+Starling). Initializes the location, acceleration and velocity of the boid. Also defines the maxforce and maxspeed for realistic values. 
+
+\subsection{Member Function Documentation}
+\index{Boid@{Boid}!Alignment@{Alignment}}
+\index{Alignment@{Alignment}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{Alignment(vector$<$ Boid $>$ Boids)}{Alignment(vector< Boid > Boids)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myvector} Boid\+::\+Alignment (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Boid} $>$}]{boids}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_a955a16c0223345823aadbe4493b0e982}{}\label{classBoid_a955a16c0223345823aadbe4493b0e982}
+A Member function implementing the A\+L\+I\+G\+N\+M\+E\+NT \hyperlink{classBoid}{Boid} rule! This function instead of affecting the position of the boid, changes the velocity of the boid and add up the velocity of all the neighbouring boids, and divide it by the number of neighbours. The final value modifies the velocity instead of replacing it altogether. 
+\begin{DoxyParams}{Parameters}
+{\em boids} & A vector$<$\+Boid$>$ of boids. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector which is the steer vector(Desired -\/ Velocity). 
+\end{DoxyReturn}
+\index{Boid@{Boid}!angle@{angle}}
+\index{angle@{angle}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{angle(myvector v)}{angle(myvector v)}}]{\setlength{\rightskip}{0pt plus 5cm}float Boid\+::angle (
+\begin{DoxyParamCaption}
+\item[{{\bf myvector}}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_aa5a1ed6464e44da8bef955e848635739}{}\label{classBoid_aa5a1ed6464e44da8bef955e848635739}
+A Member function which computes the angle of velocity so that image roates appropriately in the direction of motion Tan inverse x/y is returned in degrees. 
+\begin{DoxyParams}{Parameters}
+{\em v} & The myvector on which computation is to be done. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A float representing the angle in degrees. 
+\end{DoxyReturn}
+\index{Boid@{Boid}!apply\+Force@{apply\+Force}}
+\index{apply\+Force@{apply\+Force}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{apply\+Force(myvector force)}{applyForce(myvector force)}}]{\setlength{\rightskip}{0pt plus 5cm}void Boid\+::apply\+Force (
+\begin{DoxyParamCaption}
+\item[{{\bf myvector}}]{force}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_ad73e4b8c1af1ed53cd6e5b4fd020c81e}{}\label{classBoid_ad73e4b8c1af1ed53cd6e5b4fd020c81e}
+A Member function which adds a particualr force to the boid. So this function the force vector to the current acceleration vector. 
+\begin{DoxyParams}{Parameters}
+{\em force} & The force vector( an object of myvector) \\
+\hline
+\end{DoxyParams}
+\index{Boid@{Boid}!borders@{borders}}
+\index{borders@{borders}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{borders(int a)}{borders(int a)}}]{\setlength{\rightskip}{0pt plus 5cm}void Boid\+::borders (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_af1bc54215ea897a0ae4b92048073d863}{}\label{classBoid_af1bc54215ea897a0ae4b92048073d863}
+A Member functionis used to handle if a bird goes out of window. Depending on the input it eitheer implements wrap around or the boundary condition. 
+\begin{DoxyParams}{Parameters}
+{\em a} & An in which is non-\/zero when use wants wrap-\/around simulation else 0 when Boundary conditions are imposed. \\
+\hline
+\end{DoxyParams}
+\index{Boid@{Boid}!Cohesion@{Cohesion}}
+\index{Cohesion@{Cohesion}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{Cohesion(vector$<$ Boid $>$ Boids)}{Cohesion(vector< Boid > Boids)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myvector} Boid\+::\+Cohesion (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Boid} $>$}]{boids}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_af8bff195217c6fd82ad390282d12f427}{}\label{classBoid_af8bff195217c6fd82ad390282d12f427}
+A Member function implementing the C\+O\+H\+E\+S\+H\+I\+ON \hyperlink{classBoid}{Boid} rule! Finds the average location of nearby boids and manipulates the steering force to move in that direction. 
+\begin{DoxyParams}{Parameters}
+{\em boids} & A vector$<$\+Boid$>$ of boids. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector which is the steer vector(Desired -\/ Velocity). 
+\end{DoxyReturn}
+\index{Boid@{Boid}!flock@{flock}}
+\index{flock@{flock}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{flock(vector$<$ Boid $>$ v)}{flock(vector< Boid > v)}}]{\setlength{\rightskip}{0pt plus 5cm}void Boid\+::flock (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Boid} $>$}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_ab8696c8548189dba88f59d917a2212fb}{}\label{classBoid_ab8696c8548189dba88f59d917a2212fb}
+A Member function which applies the three laws to the flock of boids. This then also assigns factors(weightage) to different laws. 
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector of the \hyperlink{classBoid}{Boid} at the current instant. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classBoid_a00eab0293372dcac7379d4deec39b430}{Separation} 
+
+\hyperlink{classBoid_af8bff195217c6fd82ad390282d12f427}{Cohesion} 
+
+\hyperlink{classBoid_a955a16c0223345823aadbe4493b0e982}{Alignment} 
+\end{DoxySeeAlso}
+\index{Boid@{Boid}!run@{run}}
+\index{run@{run}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{run(vector$<$ Boid $>$ v, int a)}{run(vector< Boid > v, int a)}}]{\setlength{\rightskip}{0pt plus 5cm}void Boid\+::run (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Boid} $>$}]{v, }
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_ad7577660df05b58b00449c12cbc9ecdd}{}\label{classBoid_ad7577660df05b58b00449c12cbc9ecdd}
+A Member function which updated the parameters of the all the boids and applies the rules on them. This function updates the behaviour of the all the boids. 
+\begin{DoxyParams}{Parameters}
+{\em v} & The vector of the \hyperlink{classBoid}{Boid} at the current instant. \\
+\hline
+{\em a} & An int specifying wrap around or boundary simulation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classBoid_ab8696c8548189dba88f59d917a2212fb}{flock} 
+
+\hyperlink{classBoid_a7404d18dcb7dfc669e80c534819fa893}{update} 
+
+\hyperlink{classBoid_af1bc54215ea897a0ae4b92048073d863}{borders} 
+\end{DoxySeeAlso}
+\index{Boid@{Boid}!Separation@{Separation}}
+\index{Separation@{Separation}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{Separation(vector$<$ Boid $>$ Boids)}{Separation(vector< Boid > Boids)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myvector} Boid\+::\+Separation (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Boid} $>$}]{boids}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_a00eab0293372dcac7379d4deec39b430}{}\label{classBoid_a00eab0293372dcac7379d4deec39b430}
+A Member function implementing the S\+E\+P\+A\+R\+A\+T\+I\+ON \hyperlink{classBoid}{Boid} rule! This rule says that the birds have to avoid collision with its neighbours. For this we have to consider a collision radius desiredsepartion such that for a bird if there is any neighbour in this radius then the bird has to go away from that neighbour. 
+\begin{DoxyParams}{Parameters}
+{\em boids} & A vector$<$\+Boid$>$ of boids. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector which is the steer vector(Desired -\/ Velocity). 
+\end{DoxyReturn}
+\index{Boid@{Boid}!update@{update}}
+\index{update@{update}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{update()}{update()}}]{\setlength{\rightskip}{0pt plus 5cm}void Boid\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classBoid_a7404d18dcb7dfc669e80c534819fa893}{}\label{classBoid_a7404d18dcb7dfc669e80c534819fa893}
+A Member function which updated the parameters of the boid in response to its environment. This modifies the location, velocity and also resets the accelration according to the values returned by the the three boid rules. 
+
+\subsection{Member Data Documentation}
+\index{Boid@{Boid}!acceleration@{acceleration}}
+\index{acceleration@{acceleration}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{acceleration}{acceleration}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myvector} Boid\+::acceleration}\hypertarget{classBoid_aea00ef84171ec7ae51a5d299001c673b}{}\label{classBoid_aea00ef84171ec7ae51a5d299001c673b}
+A public vector representing the boid\textquotesingle{}s acceleration. \index{Boid@{Boid}!location@{location}}
+\index{location@{location}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{location}{location}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myvector} Boid\+::location}\hypertarget{classBoid_a1494747f6a02c9117b581bd7f77b0c27}{}\label{classBoid_a1494747f6a02c9117b581bd7f77b0c27}
+A public vector representing the boid\textquotesingle{}s location. \index{Boid@{Boid}!max\+Force@{max\+Force}}
+\index{max\+Force@{max\+Force}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{max\+Force}{maxForce}}]{\setlength{\rightskip}{0pt plus 5cm}float Boid\+::max\+Force}\hypertarget{classBoid_a2a6d579118276efaeac7ba0e4b872afd}{}\label{classBoid_a2a6d579118276efaeac7ba0e4b872afd}
+A public vector representing the maxforce the boid can experience(\+To impose realistic behaviour). \index{Boid@{Boid}!max\+Speed@{max\+Speed}}
+\index{max\+Speed@{max\+Speed}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{max\+Speed}{maxSpeed}}]{\setlength{\rightskip}{0pt plus 5cm}float Boid\+::max\+Speed}\hypertarget{classBoid_ac57e1058fb698a542990405ecfd1d88b}{}\label{classBoid_ac57e1058fb698a542990405ecfd1d88b}
+A public vector representing the maxspeed the boid can have(\+To impose realistic behaviour). \index{Boid@{Boid}!velocity@{velocity}}
+\index{velocity@{velocity}!Boid@{Boid}}
+\subsubsection[{\texorpdfstring{velocity}{velocity}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf myvector} Boid\+::velocity}\hypertarget{classBoid_a485c85be8c3f465a2a0f07de3e0449e0}{}\label{classBoid_a485c85be8c3f465a2a0f07de3e0449e0}
+A public vector representing the boid\textquotesingle{}s velocity. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Boid_8h}{Boid.\+h}\item 
+\hyperlink{Boid_8cpp}{Boid.\+cpp}\end{DoxyCompactItemize}

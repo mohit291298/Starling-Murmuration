@@ -1,0 +1,101 @@
+\hypertarget{classFlock}{}\section{Flock Class Reference}
+\label{classFlock}\index{Flock@{Flock}}
+
+
+{\ttfamily \#include $<$Flock.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFlock_a2a0a514c368e21f718ad7358ed42f3b7}{Flock} ()
+\item 
+\hyperlink{classBoid}{Boid} \hyperlink{classFlock_a79925dd0c9568e57417d5d459711682d}{get\+Boid} (int i)
+\item 
+void \hyperlink{classFlock_ad671f2430e8b980c74d9654abe9acbc9}{add\+Boid} (\hyperlink{classBoid}{Boid} b)
+\item 
+int \hyperlink{classFlock_ae5801b4eed7ae1e9719f50550424e8f1}{get\+Size} ()
+\item 
+void \hyperlink{classFlock_a334727f018265a766832e1644d4adf87}{flocking} (int a)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{classBoid}{Boid} $>$ \hyperlink{classFlock_a5f82ca864e51913c633c2a75fe8ba854}{flock}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for representing the flock(group) of starlings. This class uses the \hyperlink{classBoid}{Boid} class and is used to store the boids in the flock. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Flock@{Flock}!Flock@{Flock}}
+\index{Flock@{Flock}!Flock@{Flock}}
+\subsubsection[{\texorpdfstring{Flock()}{Flock()}}]{\setlength{\rightskip}{0pt plus 5cm}Flock\+::\+Flock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFlock_a2a0a514c368e21f718ad7358ed42f3b7}{}\label{classFlock_a2a0a514c368e21f718ad7358ed42f3b7}
+A Constructor. The default constructor(with no parameters). 
+
+\subsection{Member Function Documentation}
+\index{Flock@{Flock}!add\+Boid@{add\+Boid}}
+\index{add\+Boid@{add\+Boid}!Flock@{Flock}}
+\subsubsection[{\texorpdfstring{add\+Boid(\+Boid b)}{addBoid(Boid b)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flock\+::add\+Boid (
+\begin{DoxyParamCaption}
+\item[{{\bf Boid}}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlock_ad671f2430e8b980c74d9654abe9acbc9}{}\label{classFlock_ad671f2430e8b980c74d9654abe9acbc9}
+A Member function which adds the input boid to the flock(std\+::vector$<$\+Boid$>$). 
+\begin{DoxyParams}{Parameters}
+{\em b} & The boid to be added. \\
+\hline
+\end{DoxyParams}
+\index{Flock@{Flock}!flocking@{flocking}}
+\index{flocking@{flocking}!Flock@{Flock}}
+\subsubsection[{\texorpdfstring{flocking(int a)}{flocking(int a)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flock\+::flocking (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlock_a334727f018265a766832e1644d4adf87}{}\label{classFlock_a334727f018265a766832e1644d4adf87}
+A Member function which updates the behaviour of every single boid w.\+r.\+t its neighbourhood. It calls the run function in \hyperlink{classBoid}{Boid} class for every \hyperlink{classBoid}{Boid} in the \hyperlink{classFlock}{Flock}. 
+\begin{DoxyParams}{Parameters}
+{\em a} & An int to be used by the borders function in \hyperlink{classBoid}{Boid}. \\
+\hline
+\end{DoxyParams}
+\index{Flock@{Flock}!get\+Boid@{get\+Boid}}
+\index{get\+Boid@{get\+Boid}!Flock@{Flock}}
+\subsubsection[{\texorpdfstring{get\+Boid(int i)}{getBoid(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Boid} Flock\+::get\+Boid (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlock_a79925dd0c9568e57417d5d459711682d}{}\label{classFlock_a79925dd0c9568e57417d5d459711682d}
+A Member function which returns the boid at index i of the flock. This function takes an integer i and returns the boid at that position in the flock. A greater index means the boid is added recently(By a mouse click!) in the flock. 
+\begin{DoxyParams}{Parameters}
+{\em i} & An int(index). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The boid at index i. 
+\end{DoxyReturn}
+\index{Flock@{Flock}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Flock@{Flock}}
+\subsubsection[{\texorpdfstring{get\+Size()}{getSize()}}]{\setlength{\rightskip}{0pt plus 5cm}int Flock\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlock_ae5801b4eed7ae1e9719f50550424e8f1}{}\label{classFlock_ae5801b4eed7ae1e9719f50550424e8f1}
+A Member function which return the size of the flock. \begin{DoxyReturn}{Returns}
+An int representing the number of Boids in the flock at that instant. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Flock@{Flock}!flock@{flock}}
+\index{flock@{flock}!Flock@{Flock}}
+\subsubsection[{\texorpdfstring{flock}{flock}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Boid}$>$ Flock\+::flock}\hypertarget{classFlock_a5f82ca864e51913c633c2a75fe8ba854}{}\label{classFlock_a5f82ca864e51913c633c2a75fe8ba854}
+A public std\+::vector of Boids representing the floack as a whole. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Flock_8h}{Flock.\+h}\item 
+\hyperlink{Flock_8cpp}{Flock.\+cpp}\end{DoxyCompactItemize}

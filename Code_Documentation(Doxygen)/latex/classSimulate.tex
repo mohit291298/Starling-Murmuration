@@ -1,0 +1,58 @@
+\hypertarget{classSimulate}{}\section{Simulate Class Reference}
+\label{classSimulate}\index{Simulate@{Simulate}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSimulate_a815c999390d9cd16e49245d4957ca946}{Simulate} ()
+\item 
+void \hyperlink{classSimulate_a496aa26515bbae1e48240b2e4db4eeb8}{Run} (int a)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classSimulate_a40bb55ff98362e746ac03f2369ddac08}{Num\+\_\+boids}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for doing the simulation and rendering using S\+F\+ML This class handles all the input(eg. mouse clicks.). Handles all the program\textquotesingle{}s interaction with S\+F\+ML. This class contatins some private function requred for rendering and handling input too. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Simulate@{Simulate}!Simulate@{Simulate}}
+\index{Simulate@{Simulate}!Simulate@{Simulate}}
+\subsubsection[{\texorpdfstring{Simulate()}{Simulate()}}]{\setlength{\rightskip}{0pt plus 5cm}Simulate\+::\+Simulate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classSimulate_a815c999390d9cd16e49245d4957ca946}{}\label{classSimulate_a815c999390d9cd16e49245d4957ca946}
+A Constructor. The constructor constructs the window and sets up the required properties of simulation. 
+
+\subsection{Member Function Documentation}
+\index{Simulate@{Simulate}!Run@{Run}}
+\index{Run@{Run}!Simulate@{Simulate}}
+\subsubsection[{\texorpdfstring{Run(int a)}{Run(int a)}}]{\setlength{\rightskip}{0pt plus 5cm}void Simulate\+::\+Run (
+\begin{DoxyParamCaption}
+\item[{int}]{a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classSimulate_a496aa26515bbae1e48240b2e4db4eeb8}{}\label{classSimulate_a496aa26515bbae1e48240b2e4db4eeb8}
+A Member function which runs the simulation of starlings. This simulates and displays the boids that we create and handles the reqired input. 
+\begin{DoxyParams}{Parameters}
+{\em a} & An int which is passed to the \hyperlink{classBoid}{Boid} class to do simulation either in a wrap around manner(when a is non-\/zero) or confined to bounderies(when a = 0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+borders 
+
+\hyperlink{classBoid}{Boid} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Data Documentation}
+\index{Simulate@{Simulate}!Num\+\_\+boids@{Num\+\_\+boids}}
+\index{Num\+\_\+boids@{Num\+\_\+boids}!Simulate@{Simulate}}
+\subsubsection[{\texorpdfstring{Num\+\_\+boids}{Num_boids}}]{\setlength{\rightskip}{0pt plus 5cm}int Simulate\+::\+Num\+\_\+boids}\hypertarget{classSimulate_a40bb55ff98362e746ac03f2369ddac08}{}\label{classSimulate_a40bb55ff98362e746ac03f2369ddac08}
+A public int denoting number of starlings at any instant. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{main_8cpp}{main.\+cpp}\end{DoxyCompactItemize}
