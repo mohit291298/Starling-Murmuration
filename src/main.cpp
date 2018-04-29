@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Flock.h"
-#include "Boid.h"
+#include "../include/Flock.h"
+#include "../include/Boid.h"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 

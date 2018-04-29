@@ -3,7 +3,7 @@
 #include <string>
 #include <math.h>
 #include "SFML/Graphics.hpp"
-#include "Boid.h"
+#include "../include/Boid.h"
 /** @file */
 
 // Global Variables for borders()

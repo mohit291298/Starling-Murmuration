@@ -1,5 +1,5 @@
-#include "Boid.h"
-#include "Flock.h"
+#include "../include/Boid.h"
+#include "../include/Flock.h"
 /** @file */
 // =============================================== //
 // ======== Flock Functions from Flock.h ========= //
