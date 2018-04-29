@@ -151,35 +151,6 @@ void Boid::applyForce(myvector force)
     acceleration.addVector(force);
 }
 
-// Separation
-// Keeps boids from getting too close to one another
-myvector Boid::Separation(vector<Boid> boids)
-{
-    float desiredseparation = 20;
-    myvector move(0, 0);
-    int count = 0;
-    for (int i = 0; i < boids.size(); i++) {
-        float d = location.distanceTwoVectors(boids[i].location);
-        if ((d > 0) && (d < desiredseparation)) {
-            myvector diff(0,0);
-            diff.set((location.x - boids[i].location.x),(location.y - boids[i].location.y));
-            diff.normalize();
-            diff.divScalar(d);      
-            move.addVector(diff);
-            count++;
-        }
-    }
-    if (count > 0)
-        move.divScalar((float)count);
-    if (move.magnitude() > 0) {
-        move.normalize();
-        move.mulScalar(maxSpeed);
-        move.subVector(velocity);
-        move.limit(maxForce);
-    }
-    return move;
-}
-
 myvector Boid::Alignment(vector<Boid> boids){
 
     float neighborradius = 50;
@@ -211,6 +182,34 @@ myvector Boid::Alignment(vector<Boid> boids){
         return temp;
     }
 }
+
+myvector Boid::Separation(vector<Boid> boids)
+{
+    float desiredseparation = 20;
+    myvector move(0, 0);
+    int count = 0;
+    for (int i = 0; i < boids.size(); i++) {
+        float d = location.distanceTwoVectors(boids[i].location);
+        if ((d > 0) && (d < desiredseparation)) {
+            myvector diff(0,0);
+            diff.set((location.x - boids[i].location.x),(location.y - boids[i].location.y));
+            diff.normalize();
+            diff.divScalar(d);      
+            move.addVector(diff);
+            count++;
+        }
+    }
+    if (count > 0)
+        move.divScalar((float)count);
+    if (move.magnitude() > 0) {
+        move.normalize();
+        move.mulScalar(maxSpeed);
+        move.subVector(velocity);
+        move.limit(maxForce);
+    }
+    return move;
+}
+
 
 myvector Boid::Cohesion(vector<Boid> boids){
 
