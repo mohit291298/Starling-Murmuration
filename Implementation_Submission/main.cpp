@@ -4,6 +4,14 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 
+/** @file */
+
+/**
+* Class for doing the simulation and rendering using SFML
+* This class handles all the input(eg. mouse clicks.).
+* Handles all the program's interaction with SFML.
+* This class contatins some private function requred for rendering and handling input too.
+*/
 
 class Simulate{
 private:
@@ -84,7 +92,13 @@ private:
     }
 
 public:
-	int Num_boids;
+
+	int Num_boids; /**< A public int denoting number of starlings at any instant.*/
+
+	/**
+	* A Constructor.
+	* The constructor constructs the window and sets up the required properties of simulation. 
+	*/
 	Simulate(){
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     window_height = desktop.height;
@@ -94,9 +108,17 @@ public:
     window.create(sf::VideoMode(window_width, window_height, desktop.bitsPerPixel), "Boids", sf::Style::None);
 
 	}
+	/**
+	* A Member function which runs the simulation of starlings.
+	* This simulates and displays the boids that we create and handles the reqired input.
+	* @param a An int which is passed to the Boid class to do simulation either in
+	* a wrap around manner(when a is non-zero) or confined to bounderies(when a = 0).
+	* @see borders
+	* @see Boid
+	*/
 	void Run(int a){
-	    Num_boids = 250;
-	    for (int i = 0; i < 250; i++) {
+	    Num_boids = 225;
+	    for (int i = 0; i < 225 ;i++) {
 	        Boid b(window_width / 3, window_height / 3); // Starts all boids in the center of the screen
 	        sf::CircleShape shape(8, 3);
 
@@ -121,6 +143,12 @@ public:
 	}
 };
 
+/**
+* The main function.
+* Takes various inputs from the user for a better visualisation of simulation.
+* Call the Simulate class for execution which then takes care of subsequent simulation.
+* @see Simulate
+*/
 int main()
 {	
 	cout<<"********************************************************************\n\n\n";

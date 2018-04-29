@@ -3,19 +3,33 @@
 #include <iostream>
 
 using namespace std;
-
+/** @file */
 #ifndef BOID_H_
 #define BOID_H_
 
+/**
+* Class for representing Euclidian vectors.
+* The vectors have both magnitude and direction.
+* These are used to denote the location, velocity and acceleration of each starling.
+*/
 class myvector {
 
 public:
-    float x;
-    float y;
+    float x; /**< A public float member representing x-projection.*/
+    float y; /**< A public float member representing y-projection.*/
 
-    //Constructors
+    /**
+    * A Constructor.
+    * The default constructor(with no parameters).
+    */
     myvector() {}
 
+    /**
+    * A Constructor.
+    * The constructor initialies the vector.
+    * @param a the x-projection.
+    * @param b the y-projection.
+    */
     myvector(float a, float b)
     {
         x = a;
@@ -24,7 +38,6 @@ public:
 
     void set(float x, float y);
 
-    //Scalar functions scale a vector by a float
     void addVector(myvector v);
     void addScalar(float x);
     void subVector(myvector v);
@@ -47,15 +60,30 @@ public:
     myvector copy(myvector v);
 };
 
+/**
+* Class for representing each boid(Starling).
+* This class completely characterizes a starling.
+* It consists of various data members like location, velocity, acceleration and many functions to maipulate these appropriately.
+*/
 
 class Boid {
 public:
-    myvector location;
-    myvector velocity;
-    myvector acceleration;
-    float maxSpeed;
-    float maxForce;
-    Boid() {}
+    myvector location;/**< A public vector representing the boid's location.*/
+
+    myvector velocity; /**< A public vector representing the boid's velocity.*/
+    
+    myvector acceleration; /**< A public vector representing the boid's acceleration.*/
+
+    float maxSpeed; /**< A public vector representing the maxspeed the boid can have(To impose realistic behaviour).*/
+    
+    float maxForce; /**< A public vector representing the maxforce the boid can experience(To impose realistic behaviour).*/
+ 
+     /**
+    * A Constructor.
+    * The default constructor(with no parameters).
+    */   
+    Boid() {} 
+
     Boid(float x, float y);
     void applyForce(myvector force);
 
@@ -64,8 +92,6 @@ public:
     myvector Alignment(vector<Boid> Boids);
     myvector Cohesion(vector<Boid> Boids);
 
-    //Functions involving SFML
-    myvector seek(myvector v);
     void run(vector <Boid> v,int a);
     void update();
     void flock(vector <Boid> v);

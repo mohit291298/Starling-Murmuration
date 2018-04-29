@@ -1,26 +1,25 @@
 #include <iostream>
 #include <vector>
 #include "Boid.h"
-
+/** @file */
 #ifndef FLOCK_H_
 #define FLOCK_H_
 
-
-// Brief description of Flock Class:
-// This file contains the class needed to create a flock of boids. It utilizes
-// the boids class and initializes boid flocks with parameters that can be
-// specified. This class will be utilized in main.
-
+/**
+* Class for representing the flock(group) of starlings.
+* This class uses the Boid class and is used to store the boids in the flock.
+*/
 class Flock {
 public:
-    vector<Boid> flock;
-    //Constructors
+    vector<Boid> flock; /**< A public std::vector of Boids representing the floack as a whole.*/
+     /**
+    * A Constructor.
+    * The default constructor(with no parameters).
+    */   
     Flock() {}
-    // Accessor functions
-    int getSize();
     Boid getBoid(int i);
-    // Mutator Functions
     void addBoid(Boid b);
+    int getSize();
     void flocking(int a);
 };
 
