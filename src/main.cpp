@@ -3,6 +3,17 @@
 #include "../include/Boid.h"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
+//#include <Text.hpp>
+#include <SFML/Graphics/Export.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
+#include <SFML/System/String.hpp>
+#include <string>
+#include <vector>
+#include <sstream> 
 
 /** @file */
 
@@ -16,6 +27,10 @@
 class Simulate{
 private:
 	sf::RenderWindow window;
+    sf::Font font;
+	sf::Text atext;
+	sf::Text atext2;
+	sf::Text atext3;
 
     int window_width;
     int window_height;
@@ -48,8 +63,33 @@ private:
 	    }
 
 	    // Applies the three rules to each boid in the flock and changes them accordingly.
-	    flock.flocking(a);
+	    energy = flock.flocking(a);
+	    avgenergy = energy/Num_boids;
 
+// Load it from a file
+
+std::ostringstream ss; //string buffer to convert numbers to string
+ss << "Total Energy: " << energy;// put float into string buffer
+
+
+//set up text properties
+
+atext.setString(ss.str()); //ss.str() converts the string buffer into a regular string 
+std::ostringstream ss2; //string buffer to convert numbers to string
+ss2 << "Average Energy : " << avgenergy;// put float into string buffer
+std::ostringstream ss3; //string buffer to convert numbers to string
+ss3 << "Number of Boids : " << Num_boids;// put float into string buffer
+
+
+//set up text properties
+
+atext2.setString(ss2.str()); //ss.str() converts the string buffer into a regular string 
+atext3.setString(ss3.str()); //ss.str() converts the string buffer into a regular string 
+
+//draw the string
+window.draw(atext);
+window.draw(atext2);
+window.draw(atext3);
 	    window.display();
 
     }
@@ -84,7 +124,6 @@ private:
 	        flock.addBoid(b);
 	        shapes.push_back(shape);
 	        Num_boids++;
-	        cout<<"Number of Starlings:  "<<Num_boids<<"\n";
 	        // New Shape is drawn
 	        window.draw(shapes[shapes.size()-1]);
 	    }
@@ -94,6 +133,8 @@ private:
 public:
 
 	int Num_boids; /**< A public int denoting number of starlings at any instant.*/
+	float energy;
+	float avgenergy;
 
 	/**
 	* A Constructor.
@@ -104,7 +145,7 @@ public:
     window_height = desktop.height;
     window_width  = desktop.width;
 
-    boids_mass_size = 2.5;
+    boids_mass_size = 3;
     window.create(sf::VideoMode(window_width, window_height, desktop.bitsPerPixel), "Boids", sf::Style::None);
 
 	}
@@ -118,6 +159,27 @@ public:
 	*/
 	void Run(int a){
 	    Num_boids = 225;
+	    if (!font.loadFromFile("arial.ttf"))
+		    //find this file in the "pong" example in the SFML examples folder
+		{
+		    std::cout << "Error loading font\n" ;
+		}
+		atext.setFont(font);
+		atext.setCharacterSize(20);
+		atext.setStyle(sf::Text::Bold);
+		atext.setColor(sf::Color::White);
+		atext.setPosition(0,0);
+		atext2.setFont(font);
+		atext2.setCharacterSize(20);
+		atext2.setStyle(sf::Text::Bold);
+		atext2.setColor(sf::Color::White);
+		atext2.setPosition(0,20);
+		atext3.setFont(font);
+		atext3.setCharacterSize(20);
+		atext3.setStyle(sf::Text::Bold);
+		atext3.setColor(sf::Color::White);
+		atext3.setPosition(1500,0);
+
 	    for (int i = 0; i < 225 ;i++) {
 	        Boid b(window_width / 3, window_height / 3); // Starts all boids in the center of the screen
 	        sf::CircleShape shape(8, 3);
@@ -135,6 +197,7 @@ public:
 	        flock.addBoid(b);
 	        shapes.push_back(shape);
 	    }
+	    Num_boids = 350;
 	    while (window.isOpen()) {
 	        HandleInput();
 	        Render(a);

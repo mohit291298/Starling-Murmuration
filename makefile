@@ -23,5 +23,5 @@ tester :
 	$(CC) $(CFLAGS) $(DEBUG) test/maintest.cpp -o $(BUILDDIR)/maintest.o;$(CC) $(DEBUG) $(BUILDDIR)/Boid.o $(BUILDDIR)/Flock.o $(BUILDDIR)/maintest.o -o $(TARGTEST) $(SFML)
 
 clean:
-	\rm -r $(BUILDDIR)/*.o bin/*
+	\rm -r $(BUILDDIR)/*.o $(TARG)
 

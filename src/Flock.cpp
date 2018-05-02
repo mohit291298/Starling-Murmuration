@@ -1,5 +1,6 @@
 #include "../include/Boid.h"
 #include "../include/Flock.h"
+#include <math.h>
 /** @file */
 // =============================================== //
 // ======== Flock Functions from Flock.h ========= //
@@ -31,10 +32,14 @@ Boid Flock::getBoid(int i)
 * It calls the run function in Boid class for every Boid in the Flock. 
 * @param a An int to be used by the borders function in Boid.
 */
-void Flock::flocking( int a) 
+float Flock::flocking( int a) 
 {
-    for (int i = 0; i < flock.size(); i++)
+	float energy = 0.0f;
+    for (int i = 0; i < flock.size(); i++){
         flock[i].run(flock,a);
+        energy += pow(((flock[i].velocity).magnitude()),2);
+    }
+    return energy;
 }
 
 /**

@@ -20,7 +20,7 @@ public:
     Boid getBoid(int i);
     void addBoid(Boid b);
     int getSize();
-    void flocking(int a);
+    float flocking(int a);
 };
 
 #endif
