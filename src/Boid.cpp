@@ -458,7 +458,7 @@ void Boid::borders(int a)
     else{
         if (location.x < 1)    velocity.set(-(velocity.x), (velocity.y));
         if (location.y < 1)    velocity.set((velocity.x), -(velocity.y));
-        if (location.x > 900) velocity.set(-(velocity.x), (velocity.y));
-        if (location.y > 900) velocity.set((velocity.x), -(velocity.y));
+        if (location.x > 1850) velocity.set(-(velocity.x), (velocity.y));
+        if (location.y > 1060) velocity.set((velocity.x), -(velocity.y));
     }
 }
