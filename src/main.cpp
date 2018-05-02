@@ -31,6 +31,10 @@ private:
 	sf::Text atext;
 	sf::Text atext2;
 	sf::Text atext3;
+	sf::Text atext4;
+	sf::Text atext5;
+	sf::Text atext6;
+	sf::Text atext7;
 
     int window_width;
     int window_height;
@@ -63,33 +67,51 @@ private:
 	    }
 
 	    // Applies the three rules to each boid in the flock and changes them accordingly.
-	    energy = flock.flocking(a);
-	    avgenergy = energy/Num_boids;
+	    flock.flocking(a);
+
 
 // Load it from a file
 
 std::ostringstream ss; //string buffer to convert numbers to string
-ss << "Total Energy: " << energy;// put float into string buffer
+ss << "Total Energy: " << flock.energy;// put float into string buffer
 
 
 //set up text properties
 
 atext.setString(ss.str()); //ss.str() converts the string buffer into a regular string 
 std::ostringstream ss2; //string buffer to convert numbers to string
-ss2 << "Average Energy : " << avgenergy;// put float into string buffer
+ss2 << "Average Energy : " << ((flock.energy)/Num_boids);// put float into string buffer
 std::ostringstream ss3; //string buffer to convert numbers to string
 ss3 << "Number of Boids : " << Num_boids;// put float into string buffer
 
+std::ostringstream ss4; //string buffer to convert numbers to string
+ss4 << "Total Force : " << flock.force;// put float into string buffer
+std::ostringstream ss5; //string buffer to convert numbers to string
+ss5 << "Average Force : " << ((flock.force)/Num_boids);// put float into string buffer
+
+std::ostringstream ss6; //string buffer to convert numbers to string
+ss6 << "Total Angular Momentum : " << flock.angmomentum;// put float into string buffer
+std::ostringstream ss7; //string buffer to convert numbers to string
+ss7 << "Average Angular Momentum : " << ((flock.angmomentum)/Num_boids);// put float into string buffer
 
 //set up text properties
 
 atext2.setString(ss2.str()); //ss.str() converts the string buffer into a regular string 
 atext3.setString(ss3.str()); //ss.str() converts the string buffer into a regular string 
+atext4.setString(ss4.str()); //ss.str() converts the string buffer into a regular string 
+atext5.setString(ss5.str()); //ss.str() converts the string buffer into a regular string 
+atext6.setString(ss6.str()); //ss.str() converts the string buffer into a regular string 
+atext7.setString(ss7.str()); //ss.str() converts the string buffer into a regular string 
 
 //draw the string
 window.draw(atext);
 window.draw(atext2);
 window.draw(atext3);
+window.draw(atext4);
+window.draw(atext5);
+window.draw(atext6);
+window.draw(atext7);
+
 	    window.display();
 
     }
@@ -133,8 +155,6 @@ window.draw(atext3);
 public:
 
 	int Num_boids; /**< A public int denoting number of starlings at any instant.*/
-	float energy;
-	float avgenergy;
 
 	/**
 	* A Constructor.
@@ -179,6 +199,26 @@ public:
 		atext3.setStyle(sf::Text::Bold);
 		atext3.setColor(sf::Color::White);
 		atext3.setPosition(1500,0);
+		atext4.setFont(font);
+		atext4.setCharacterSize(20);
+		atext4.setStyle(sf::Text::Bold);
+		atext4.setColor(sf::Color::White);
+		atext4.setPosition(0,950);
+		atext5.setFont(font);
+		atext5.setCharacterSize(20);
+		atext5.setStyle(sf::Text::Bold);
+		atext5.setColor(sf::Color::White);
+		atext5.setPosition(0,970);
+		atext6.setFont(font);
+		atext6.setCharacterSize(20);
+		atext6.setStyle(sf::Text::Bold);
+		atext6.setColor(sf::Color::White);
+		atext6.setPosition(1400,950);
+		atext7.setFont(font);
+		atext7.setCharacterSize(20);
+		atext7.setStyle(sf::Text::Bold);
+		atext7.setColor(sf::Color::White);
+		atext7.setPosition(1400,970);
 
 	    for (int i = 0; i < 225 ;i++) {
 	        Boid b(window_width / 3, window_height / 3); // Starts all boids in the center of the screen

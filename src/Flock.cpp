@@ -32,14 +32,30 @@ Boid Flock::getBoid(int i)
 * It calls the run function in Boid class for every Boid in the Flock. 
 * @param a An int to be used by the borders function in Boid.
 */
-float Flock::flocking( int a) 
+void Flock::flocking( int a) 
 {
-	float energy = 0.0f;
+	int ct = bt;
+	if(bt < 10){
+		bt++;
+	}
+	else{
+	energy = 0.0f;
+	force = 0.0f;
+	angmomentum = 0.0f;
+	bt = 0;
+	}
+	myvector ini;
     for (int i = 0; i < flock.size(); i++){
+    	ini.x = flock[i].velocity.x;
+    	ini.y = flock[i].velocity.y;
         flock[i].run(flock,a);
+        if(ct == 10){
         energy += pow(((flock[i].velocity).magnitude()),2);
+        force += (((flock[i].velocity).magnitude()) - ((ini).magnitude()));
+        angmomentum += ((((flock[i].location).x)*((flock[i].velocity).y)) - (((flock[i].location).y)*((flock[i].velocity).x)));
+    	}
     }
-    return energy;
+    energy;
 }
 
 /**
